@@ -38,6 +38,12 @@ class GoogleClients:
         if len(df) > n_rows:
             df = df.tail(n_rows)
         return df
+        
+    def read_sheet_all(self, spreadsheet_id: str, worksheet_name: str) -> pd.DataFrame:
+        ws = self.open_sheet(spreadsheet_id, worksheet_name)
+        df = get_as_dataframe(ws, evaluate_formulas=True, header=0)
+        return df.dropna(how='all')
+
 
     def append_rows(self, spreadsheet_id: str, worksheet_name: str, df: pd.DataFrame):
         ws = self.open_sheet(spreadsheet_id, worksheet_name)

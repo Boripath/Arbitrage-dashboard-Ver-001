@@ -1,3 +1,6 @@
+# ───────────────────────────────────────────────────────────────────────────────
+# src/archive_parquet.py
+# ───────────────────────────────────────────────────────────────────────────────
 import os, yaml
 import pandas as pd
 from datetime import datetime, timedelta, timezone
@@ -5,12 +8,15 @@ from .utils_logging import setup_logger
 from .utils_google import GoogleClients
 from dotenv import load_dotenv
 
+
 def load_config(path: str = 'config.yaml'):
     with open(path, 'r') as f:
         return yaml.safe_load(f)
 
+
 def ensure_dir(path: str):
     os.makedirs(path, exist_ok=True)
+
 
 def main():
     log = setup_logger()

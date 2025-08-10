@@ -35,6 +35,7 @@ def load_sheet(spreadsheet_id: str, worksheet_name: str, sa_json_path: str = Non
     df = get_as_dataframe(ws, evaluate_formulas=True, header=0).dropna(how='all')
     return df
 
+
 def coerce_types(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
         return df
@@ -46,6 +47,7 @@ def coerce_types(df: pd.DataFrame) -> pd.DataFrame:
             df[c] = pd.to_numeric(df[c], errors='coerce')
     df = df.dropna(subset=['timestamp_utc','instrument'])
     return df
+
 
 st.set_page_config(page_title="Arbitrage Dashboard — ver 001", layout="wide")
 st.title("Arbitrage Dashboard — ver 001")
@@ -92,8 +94,7 @@ latest_df = df[df['timestamp_utc'] == latest_ts]
 if latest_df.empty:
     st.write("No latest snapshot.")
 else:
-    fig1 = px.scatter(latest_df, x='days_to_expiry', y='spread',
-                      hover_data=['instrument','apy_annual','z_cross','z_hist','z_term'])
+    fig1 = px.scatter(latest_df, x='days_to_expiry', y='spread', hover_data=['instrument','apy_annual','z_cross','z_hist','z_term'])
     fig1.update_layout(xaxis_title='Days to Expiry', yaxis_title='Spread')
     st.plotly_chart(fig1, use_container_width=True)
 
@@ -105,8 +106,7 @@ plot_df = df[df['instrument'].isin(sel)] if sel else df
 if plot_df.empty:
     st.write("Select instruments to view APY timeline.")
 else:
-    fig2 = px.line(plot_df, x='timestamp_utc', y='apy_annual', color='instrument',
-                   hover_data=['days_to_expiry'])
+    fig2 = px.line(plot_df, x='timestamp_utc', y='apy_annual', color='instrument', hover_data=['days_to_expiry'])
     fig2.update_layout(yaxis_title='APY (annualized)', xaxis_title='Time (UTC)')
     st.plotly_chart(fig2, use_container_width=True)
 
@@ -116,8 +116,7 @@ piv = df.pivot_table(index='timestamp_utc', columns='instrument', values='z_cros
 if piv.empty:
     st.write("Insufficient data for heatmap.")
 else:
-    fig3 = px.imshow(piv.T, aspect='auto', origin='lower',
-                     labels=dict(x='Time (UTC)', y='Instrument', color='z_cross'))
+    fig3 = px.imshow(piv.T, aspect='auto', origin='lower', labels=dict(x='Time (UTC)', y='Instrument', color='z_cross'))
     st.plotly_chart(fig3, use_container_width=True)
 
 st.caption("v001 • Charts: Spread–DTE, APY timeline, z_cross heatmap • Data refresh via cache (5 min)")

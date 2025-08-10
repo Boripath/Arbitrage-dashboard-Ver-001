@@ -22,18 +22,18 @@ thresholds:
 term_curve_bins: [0, 7, 14, 30, 60, 90, 180, 365]
 
 sheet:
-  spreadsheet_id: "REPLACE_WITH_GOOGLE_SHEET_ID"
+  spreadsheet_id: "18pTUrIBS0UZEopogZIK9DhMk0TUMoJ0tMraSDniWBl0" # "REPLACE_WITH_GOOGLE_SHEET_ID"
   worksheet_name: "live_metrics"
   # Maximum rows to pull back from Google Sheet when computing rolling metrics
   history_pull_rows: 5000
 
 archive:
-  drive_folder_id: "REPLACE_WITH_GOOGLE_DRIVE_FOLDER_ID"
+  drive_folder_id:  "1JnJYraKAaJTbbMnw50xoMDJy_llsWIGP" #"REPLACE_WITH_GOOGLE_DRIVE_FOLDER_ID"
   out_dir: "/tmp/arb_archive"   # local staging before upload
 
 notifications:
   line_notify_token: "REPLACE_OR_USE_ENV"
-  discord_webhook_url: "REPLACE_OR_USE_ENV"
+  discord_webhook_url: "https://discord.com/api/webhooks/1404066762244227112/12JVAbePjuOdyXt80Wyu3QBhre3E9TDC_yVbTRG8UJdi26Jz7rb30KzGs2Z0FMJMKatl"  "REPLACE_OR_USE_ENV"
   telegram_bot_token: "REPLACE_OR_USE_ENV"
   telegram_chat_id: "REPLACE_OR_USE_ENV"
   enabled_channels: ["line"]

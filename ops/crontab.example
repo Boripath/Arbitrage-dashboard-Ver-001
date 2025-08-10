@@ -9,4 +9,3 @@
 # Nightly archive at 00:05 UTC (implement later in src/archive_parquet.py)
 5 0 * * * cd /home/ubuntu/arbitrage-dashboard && \
   /home/ubuntu/arbitrage-dashboard/.venv/bin/python -m src.archive_parquet >> /var/log/arb_archive.log 2>&1
-
